@@ -31,6 +31,6 @@ namespace Teams.Platense
 
         public override FieldPosition GetInitialPosition() => FieldPosition.A2;
 
-        public override string GetPlayerDisplayName() => "Ivan Pittaluga";
+        public override string GetPlayerDisplayName() => "Ivan";
     }
 }

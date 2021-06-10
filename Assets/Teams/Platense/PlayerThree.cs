@@ -7,23 +7,38 @@ namespace Teams.Platense
 {
     public class PlayerThree : TeamPlayer
     {
+     private const float minimumDistanceToGoal = 10;
+
         public override void OnUpdate()
         {
-            GoTo(FieldPosition.F1);
+            var ballPosition = GetBallPosition();
+
+            if (BallIsNearGoal(ballPosition))
+                MoveBy(GetDirectionTo(ballPosition));
+            else
+                GoTo(FieldPosition.D2);
         }
 
-        public override void OnReachBall()
+        private bool BallIsNearGoal(Vector3 ballPosition) => 
+            Vector3.Distance(ballPosition, GetMyGoalPosition()) < minimumDistanceToGoal;
+
+        public Vector3 GetTeamMatePosition(int playerIndex)
         {
-           
+            return GetTeamMatesInformation()[playerIndex].Position;
         }
+        
+        public override void OnReachBall() 
+        {
+            var vegasPosition = GetTeamMatePosition(0);
+           ShootBall(GetDirectionTo(vegasPosition),ShootForce.Medium);
+        } 
 
         public override void OnScoreBoardChanged(ScoreBoard scoreBoard)
         {
-
         }
 
         public override FieldPosition GetInitialPosition() => FieldPosition.C2;
 
-        public override string GetPlayerDisplayName() => "Player 3";
+        public override string GetPlayerDisplayName() => "Mid";
     }
 }
