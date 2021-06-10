@@ -18,7 +18,7 @@ namespace Teams.Platense
 
         public string GetName() => "Platense";
 
-        public string TeamShield => "Green";
+        public string TeamShield => "Blue";
 
 
     }
