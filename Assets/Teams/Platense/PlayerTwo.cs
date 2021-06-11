@@ -22,7 +22,7 @@ namespace Teams.Platense
         }
 
         public override void OnReachBall() =>
-            ShootBall(GetDirectionTo(GetRivalGoalPosition()), ShootForce.Medium);
+            ShootBall(GetDirectionTo(GetRivalGoalPosition()), ShootForce.High);
         
         public override void OnScoreBoardChanged(ScoreBoard scoreBoard)
         {

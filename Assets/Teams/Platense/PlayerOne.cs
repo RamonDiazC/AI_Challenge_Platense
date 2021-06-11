@@ -9,7 +9,7 @@ namespace Teams.Platense
     {
         public float getDistanceToBall() 
        {
-         return Vector3.Distance(GetPosition(), GetBallPosition() );
+         return Vector3.Distance(GetRivalGoalPosition(), GetBallPosition() );
        }
        public int getPlayerState(float distance, float threshold)
        {
@@ -23,14 +23,14 @@ namespace Teams.Platense
         public override void OnUpdate()
         {
           var distanceToBall = getDistanceToBall() ;
-          var state = getPlayerState(distanceToBall, 6);
+          var state = getPlayerState(distanceToBall, 10);
           switch (state) {
             case 0: 
               var ballPosition = GetBallPosition();
               MoveBy(GetDirectionTo(ballPosition));
               break;
             case 1:
-              GoTo(FieldPosition.F3);
+              GoTo(FieldPosition.E3);
               break;
           }
         }
@@ -60,7 +60,7 @@ namespace Teams.Platense
 
         }
 
-        public override FieldPosition GetInitialPosition() => FieldPosition.C2;
+        public override FieldPosition GetInitialPosition() => FieldPosition.C3;
 
         public override string GetPlayerDisplayName() => "Dani Vega";
     }
