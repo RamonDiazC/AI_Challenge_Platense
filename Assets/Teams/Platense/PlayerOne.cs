@@ -29,13 +29,14 @@ namespace Teams.Platense
           var distanceToBall = getDistanceToBall() ;
           var distanceBallRivalGoal = getDistanceBallRivalGoal();
           var state = getPlayerState(distanceToBall, 5, distanceBallRivalGoal, 15);
+          var ballPosition = GetBallPosition();
           switch (state) {
             case 0: 
-              var ballPosition = GetBallPosition();
               MoveBy(GetDirectionTo(ballPosition));
               break;
             case 1:
-              GoTo(FieldPosition.E3);
+              //GoTo(Vector3.Lerp(ballPosition, GetPosition(), 0.2f));
+              GoTo(FieldPosition.F1);
               break;
           }
         }
