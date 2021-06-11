@@ -7,7 +7,7 @@ namespace Teams.Platense
 {
     public class PlayerThree : TeamPlayer
     {
-     private const float minimumDistanceToGoal = 10;
+     private const float minimumDistanceToGoal = 15;
 
         public override void OnUpdate()
         {
@@ -16,7 +16,7 @@ namespace Teams.Platense
             if (BallIsNearGoal(ballPosition))
                 MoveBy(GetDirectionTo(ballPosition));
             else
-                GoTo(FieldPosition.D2);
+                GoTo(FieldPosition.C2);
         }
 
         private bool BallIsNearGoal(Vector3 ballPosition) => 
@@ -30,7 +30,7 @@ namespace Teams.Platense
         public override void OnReachBall() 
         {
             var vegasPosition = GetTeamMatePosition(0);
-           ShootBall(GetDirectionTo(vegasPosition),ShootForce.Medium);
+           ShootBall(GetDirectionTo(vegasPosition),ShootForce.High);
         } 
 
         public override void OnScoreBoardChanged(ScoreBoard scoreBoard)

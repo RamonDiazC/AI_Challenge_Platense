@@ -9,7 +9,7 @@ namespace Teams.Platense
     {
         public float getDistanceToBall() 
        {
-         return Vector3.Distance(GetRivalGoalPosition(), GetBallPosition() );
+         return Vector3.Distance(GetPosition(), GetBallPosition() );
        }
        public int getPlayerState(float distance, float threshold)
        {
@@ -20,17 +20,21 @@ namespace Teams.Platense
            return 1;
          }
        }
+       public float getDistanceBallRivalGoal() 
+       {
+         return Vector3.Distance(GetRivalGoalPosition(), GetBallPosition() );
+       }
         public override void OnUpdate()
         {
           var distanceToBall = getDistanceToBall() ;
-          var state = getPlayerState(distanceToBall, 10);
+          var state = getPlayerState(distanceToBall, 5);
           switch (state) {
             case 0: 
               var ballPosition = GetBallPosition();
               MoveBy(GetDirectionTo(ballPosition));
               break;
             case 1:
-              GoTo(FieldPosition.E3);
+              GoTo(FieldPosition.F3);
               break;
           }
         }
@@ -41,7 +45,7 @@ namespace Teams.Platense
         }
         public override void OnReachBall()
         {
-          var state = getPlayerState(Vector3.Distance(GetPosition(), GetRivalGoalPosition()), 6);
+          var state = getPlayerState(Vector3.Distance(GetPosition(), GetRivalGoalPosition()), 13);
           switch (state) {
             case 0:
               ShootBall(GetDirectionTo(GetRivalGoalPosition()), ShootForce.High);
